@@ -72,90 +72,23 @@ print(arduino_data)
 
 print("WEATHER PREDICTION FROM ARDUINO DATA \n")
 prediction_base = normed_arduino_data
-unorm_one_h_prediction = model.predict(prediction_base).flatten()
-one_h_prediction_r = denormy(unorm_one_h_prediction)
-one_h_prediction_f = pd.DataFrame(one_h_prediction_r).T
-one_h_prediction = one_h_prediction_f.rename(columns={1:'pressure',
-                                                      2:'humidity',
-                                                      0:'temp_C',
-                                                      3:'rain'})
-one_h_prediction.loc[one_h_prediction['rain'] < 0, 'rain'] = 0
-df_onehd = pd.DataFrame(data=unorm_one_h_prediction).T
-df_oneh = pd.DataFrame(df_onehd, columns={0,1,2})
-print("\n")
-print('1 HOUR')
-print(round(one_h_prediction, 2))
 
-unorm_two_h_prediction = model.predict(df_oneh).flatten()
-two_h_prediction_r = denormy(unorm_two_h_prediction)
-two_h_prediction_f = pd.DataFrame(two_h_prediction_r).T
-two_h_prediction = two_h_prediction_f.rename(columns={1:'pressure',
-                                                      2:'humidity',
-                                                      0:'temp_C',
-                                                      3:'rain'})
-two_h_prediction.loc[two_h_prediction['rain'] < 0, 'rain'] = 0
-df_twohd = pd.DataFrame(data=unorm_two_h_prediction).T
-df_twoh = pd.DataFrame(df_twohd, columns={0,1,2})
-print("\n")
-print('2 HOUR')
-print(round(two_h_prediction,2))
 
-unorm_three_h_prediction = model.predict(df_twoh).flatten()
-three_h_prediction_r = denormy(unorm_three_h_prediction)
-three_h_prediction_f = pd.DataFrame(three_h_prediction_r).T
-three_h_prediction = three_h_prediction_f.rename(columns={1:'pressure',
-                                                          2:'humidity',
-                                                          0:'temp_C',
-                                                          3:'rain'})
-three_h_prediction.loc[three_h_prediction['rain'] < 0, 'rain'] = 0
-df_threehd = pd.DataFrame(data=unorm_three_h_prediction).T
-df_threeh = pd.DataFrame(df_threehd, columns={0,1,2})
-print("\n")
-print('3 HOUR')
-print(round(three_h_prediction,2))
-
-unorm_four_h_prediction = model.predict(df_threeh).flatten()
-four_h_prediction_r = denormy(unorm_four_h_prediction)
-four_h_prediction_f = pd.DataFrame(four_h_prediction_r).T
-four_h_prediction = four_h_prediction_f.rename(columns={1:'pressure',
-                                                        2:'humidity',
-                                                        0:'temp_C',
-                                                        3:'rain'})
-four_h_prediction.loc[four_h_prediction['rain'] < 0, 'rain'] = 0
-df_fourhd = pd.DataFrame(data=unorm_four_h_prediction).T
-df_fourh = pd.DataFrame(df_fourhd, columns={0,1,2})
-print("\n")
-print('4 HOUR')
-print(round(four_h_prediction,2))
-
-unorm_five_h_prediction = model.predict(df_fourh).flatten()
-five_h_prediction_r = denormy(unorm_five_h_prediction)
-five_h_prediction_f = pd.DataFrame(five_h_prediction_r).T
-five_h_prediction = five_h_prediction_f.rename(columns={1:'pressure',
-                                                        2:'humidity',
-                                                        0:'temp_C',
-                                                        3:'rain'})
-five_h_prediction.loc[five_h_prediction['rain'] < 0, 'rain'] = 0
-df_fivehd = pd.DataFrame(data=unorm_five_h_prediction).T
-df_fiveh = pd.DataFrame(df_fivehd, columns={0,1,2})
-print("\n")
-print('5 HOUR')
-print(round(five_h_prediction, 2))
-
-unorm_six_h_prediction = model.predict(df_fiveh).flatten()
-six_h_prediction_r = denormy(unorm_six_h_prediction)
-six_h_prediction_f = pd.DataFrame(six_h_prediction_r).T
-six_h_prediction = six_h_prediction_f.rename(columns={1:'pressure',
-                                                      2:'humidity',
-                                                      0:'temp_C',
-                                                      3:'rain'})
-six_h_prediction.loc[six_h_prediction['rain'] < 0, 'rain'] = 0
-df_sixhd = pd.DataFrame(data=unorm_six_h_prediction).T
-df_sixh = pd.DataFrame(df_sixhd, columns={0,1,2})
-print("\n")
-print('6 HOUR')
-print(round(five_h_prediction,2))
-
+for i in range(5):
+    unorm_hour_prediction = model.predict(prediction_base).flatten()
+    h_prediction_r = denormy(unorm_hour_prediction)
+    h_prediction_f = pd.DataFrame(h_prediction_r).T
+    hour_prediction = h_prediction_f.rename(columns={1: 'pressure',
+                                                     2: 'humidity',
+                                                     0: 'temp_C',
+                                                     3: 'rain'})
+    hour_prediction.loc[hour_prediction['rain'] < 0, 'rain'] = 0
+    df_hd = pd.DataFrame(data=unorm_hour_prediction).T
+    df_h = pd.DataFrame(df_hd, columns={0, 1, 2})
+    prediction_base = df_h
+    print("\n")
+    print(str(i + 1) + ' HOUR')
+    print(round(hour_prediction, 2))
 
 
 print('END')
