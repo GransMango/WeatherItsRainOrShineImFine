@@ -20,7 +20,7 @@ print("WEATHER PREDICTION FROM ARDUINO DATA \n")
 prediction_base = normed_arduino_data
 
 
-for i in range(5):
+for i in range(6):
     unorm_hour_prediction = model.predict(prediction_base).flatten()
     h_prediction_r = denormy(unorm_hour_prediction)
     h_prediction_f = pd.DataFrame(h_prediction_r).T
