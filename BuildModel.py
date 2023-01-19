@@ -44,7 +44,7 @@ def plot_history(history):
              label = 'Val Error')
     plt.ylim([0,1])
     plt.legend()
-    plt.savefig(directory + "\\ModelBenchmark\\" + "test2.pdf")
+    plt.savefig(Matplot_dirname + '\\plotMAE.pdf')
 
 
     plt.figure()
@@ -56,7 +56,7 @@ def plot_history(history):
              label = 'Val Error')
     plt.ylim([0,1])
     plt.legend()
-    plt.savefig(directory + "\\ModelBenchmark\\" + "test.pdf")
+    plt.savefig(Matplot_dirname + '\\plotMSE.pdf')
 
 model = build_model()
 total_parameters = model.count_params()
@@ -69,9 +69,6 @@ history = model.fit(normed_x_train, normed_y_train, epochs=EPOCHS,
 hist = pd.DataFrame(history.history)
 hist['epoch'] = history.epoch
 
-
-
-plot_history(history)
 
 # loss, mae, mse = model.evaluate(normed_x_test, normed_y_test, verbose=2)
 mae = model.evaluate(normed_x_test, normed_y_test, verbose=2)[1]
@@ -87,17 +84,28 @@ print("Testing set Mean Abs Error: {:5.2f} norm fut weather".format(mae))
 
 # Saving model file
 model.save(directory + '\\Model\\')
-#for i,j,y in os.walk('.\\ModelBenchmark\\'):
-#    split_dir = i.split("\\")
-#    if len(split_dir) > 2:
-#        name = split_dir
-#        split_name = name.split('_')
 
 
-Matplot_dirname = '_par_' + str(total_parameters) + '_lear_' + str(learning_rate) + '_' + activation_function)
-isExists = os.path.exists(directory + '\\ModelBenchmark\\' + matplot_dirname)
+# Creating path for saving plots
+Matplot_dirname = '_par_' + str(total_parameters) + '_lear_' + str(learning_rate) + '_' + (activation_function)
+isExists = os.path.exists(directory + '\\ModelBenchmark\\' + Matplot_dirname)
+
+# Adding mae to path, since mae shouldn't affect creation of directory
+Matplot_dirname = directory + '\\ModelBenchmark\\' + 'ABS_' + str(round(mae, 2)) + Matplot_dirname
+
+# Adding plots and a summary of parameters for model
 if (not isExists):
-    os.mkdir(directory + '\\ModelBenchmark\\' + 'ABS_' + str(mae) + Matplot_dirname)
+    os.mkdir(Matplot_dirname)
+    plot_history(history)
+    with open(Matplot_dirname + '\\' + 'modelParam.txt', 'w+') as file:
+        model.summary(print_fn=lambda x: file.write(x + '\n'))
+        file.write('Activation function: ' + activation_function + '\n')
+        file.write('Learning rate: ' + str(learning_rate) + '\n')
+        file.write('loss function: ' + loss + '\n')
+        file.write('EPOCHS: ' + str(EPOCHS) + '\n')
+        file.write('Patience: ' + str(patience) + '\n')
+        file.write('Validation split: ' + str(validation_split))
 
-with open(directory + '\\ModelBenchmark\\' + 'ABS_' + str(mae) + Matplot_dirname)
+
+
 
