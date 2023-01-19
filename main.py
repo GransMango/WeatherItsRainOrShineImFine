@@ -1,9 +1,7 @@
 import pandas as pd
 from os.path import dirname
 from tensorflow import keras
-from DataProcessing import denormy, normed_arduino_data, arduino_data
-
-directory = dirname(__file__)
+from DataProcessing import denormy, normed_arduino_data, arduino_data, directory
 
 model = keras.models.load_model(directory + '\\Model\\')
 #print(tf.__version__)

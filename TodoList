@@ -1,9 +1,16 @@
-Legge til tid på døgnet*
+Legge til tid på døgnet og måned*
 Bestemme aktiveringsfunksjonen
 Optimalisere parameterene
 Hente mer data*
 
 
 
+
 Optimistisk:
 Flere inputs
+Flask
+
+
+
+Test cases:
+Aktiveringsfunksjon, feil aktiveringsfunksjon
