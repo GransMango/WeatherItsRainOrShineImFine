@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow import keras
+from tqdm.keras import TqdmCallback
 from tensorflow.keras import layers
 from DataProcessing import x_train, normed_y_train, normed_x_train, normed_x_test, normed_y_test, directory
 
@@ -57,21 +58,13 @@ def plot_history(history):
     plt.legend()
     plt.savefig(directory + "\\ModelBenchmark\\" + "test.pdf")
 
-
-class PrintDot(keras.callbacks.Callback):
-    def on_epoch_end(self, epoch, logs):
-      if epoch % 100 == 0: print('')
-      print('.', end='')
-
-
 model = build_model()
-model.summary()
-
+total_parameters = model.count_params()
 
 early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=patience)
 
 history = model.fit(normed_x_train, normed_y_train, epochs=EPOCHS,
-                    validation_split=validation_split, verbose=2, callbacks=[early_stop, PrintDot()])
+                    validation_split=validation_split, verbose=0, callbacks=[early_stop, TqdmCallback(verbose=0)])
 
 hist = pd.DataFrame(history.history)
 hist['epoch'] = history.epoch
@@ -94,5 +87,17 @@ print("Testing set Mean Abs Error: {:5.2f} norm fut weather".format(mae))
 
 # Saving model file
 model.save(directory + '\\Model\\')
-#isExists = os.path.exists(directory + '\\ModelBenchmark\\ABS_' + str(mae) + '_' + )
-#with open(directory + '\\ModelBenchmark\\ABS_' + str(mae) + )
+#for i,j,y in os.walk('.\\ModelBenchmark\\'):
+#    split_dir = i.split("\\")
+#    if len(split_dir) > 2:
+#        name = split_dir
+#        split_name = name.split('_')
+
+
+Matplot_dirname = '_par_' + str(total_parameters) + '_lear_' + str(learning_rate) + '_' + activation_function)
+isExists = os.path.exists(directory + '\\ModelBenchmark\\' + matplot_dirname)
+if (not isExists):
+    os.mkdir(directory + '\\ModelBenchmark\\' + 'ABS_' + str(mae) + Matplot_dirname)
+
+with open(directory + '\\ModelBenchmark\\' + 'ABS_' + str(mae) + Matplot_dirname)
+
