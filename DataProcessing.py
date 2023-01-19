@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 from os.path import dirname
 
@@ -9,7 +11,7 @@ directory = dirname(__file__)
 
 
 da = pd.read_csv(directory + '\\Data\\bradatebackup.csv')
-da["temp_C"] = kelv_to_celsius(da["temp"])
+# da["temp_C"] = kelv_to_celsius(da["temp"])
 features = ['temp_C', 'pressure', 'humidity', 'rain']
 dataset = pd.DataFrame(da, columns=features)
 

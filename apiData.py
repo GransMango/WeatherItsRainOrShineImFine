@@ -49,7 +49,6 @@ for keys in file_json:
     print(type(file_json[keys]))
 
 print(type(file_json['hourly']))
-file_json = json.dumps(file_json)
 
 with open(os.getcwd() + '\\Data\\' + query + '.json', 'w+') as file:
-    file.write(file_json)
+    json.dump(file_json, file, indent=4)
