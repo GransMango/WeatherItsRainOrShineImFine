@@ -28,7 +28,7 @@ longitude = str(location_json['lon'])
 # Retry 3 times if timeout
 for i in range(3):
     try:
-        data_request = requests.get('https://archive-api.open-meteo.com/v1/archive?latitude=' + latitude + '&longitude=' + longitude + '&start_date=2021-01-01&end_date=2022-12-14&hourly=temperature_2m,relativehumidity_2m,pressure_msl,precipitation,windspeed_10m,winddirection_10m')
+        data_request = requests.get('https://archive-api.open-meteo.com/v1/archive?latitude=' + latitude + '&longitude=' + longitude + '&start_date=1991-01-01&end_date=2022-12-14&hourly=temperature_2m,relativehumidity_2m,pressure_msl,precipitation,windspeed_10m,winddirection_10m')
     except data_request.exceptions.Timeout:
         print("Request timeout")
         continue
