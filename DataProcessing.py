@@ -27,7 +27,7 @@ x_test = x_dataset.loc[12426:13030]
 
 y_datasetdf = dataset.shift(periods=-1)
 y_dataset = pd.DataFrame(y_datasetdf, columns=['temp_C', 'pressure', 'humidity', 'rain'])
-y_train = y_dataset.loc[0:12425]
+y_train = y_dataset.loc[0:12425] #Change to total data points
 y_test = y_dataset.loc[12426:13030]
 
 
