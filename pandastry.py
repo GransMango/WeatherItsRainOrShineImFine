@@ -1,8 +1,9 @@
 import pandas as pd
 import json
 from IPython.display import display
+from apiData import json_dir
 
-with open(r"C:\Users\danie\Documents\Weathrt\WeatherItsRainOrShineImFine\Data\Oslo+Norge.json", "r") as file:
+with open(json_dir, "r") as file:
     data = json.loads(file.read())
 
 data = data['hourly']

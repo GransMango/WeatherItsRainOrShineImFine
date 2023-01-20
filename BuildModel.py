@@ -7,6 +7,8 @@ from tqdm.keras import TqdmCallback
 from tensorflow.keras import layers
 from DataProcessing import x_train, normed_y_train, normed_x_train, normed_x_test, normed_y_test, directory
 
+print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+
 # Layers
 number_of_nodes = 120 # Set amount of nodes for hidden layer 1
 activation_function = 'sigmoid' # Select activation function

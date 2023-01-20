@@ -15,6 +15,8 @@ da = pd.read_csv(directory + '\\Data\\bradatebackup.csv')
 features = ['temp_C', 'pressure', 'humidity', 'rain']
 dataset = pd.DataFrame(da, columns=features)
 
+class
+
 
 x_dataset = pd.DataFrame(dataset, columns=['temp_C', 'pressure', 'humidity'])
 x_train = x_dataset.loc[0:12425]

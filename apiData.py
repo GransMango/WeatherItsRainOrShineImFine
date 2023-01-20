@@ -50,5 +50,7 @@ for keys in file_json:
 
 print(type(file_json['hourly']))
 
-with open(os.getcwd() + '\\Data\\' + query + '.json', 'w+') as file:
+json_dir = os.getcwd() + '\\Data\\' + query + '.json'
+
+with open(json_dir, 'w+') as file:
     json.dump(file_json, file, indent=4)
