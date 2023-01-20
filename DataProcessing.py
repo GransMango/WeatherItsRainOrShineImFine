@@ -10,13 +10,15 @@ def kelv_to_celsius(temp_kelv):
 directory = dirname(__file__)
 
 
+
+
 da = pd.read_csv(directory + '\\Data\\bradatebackup.csv')
 # da["temp_C"] = kelv_to_celsius(da["temp"])
 features = ['temp_C', 'pressure', 'humidity', 'rain']
 dataset = pd.DataFrame(da, columns=features)
 
-class
-
+class Datasets():
+    def __int__(self):
 
 x_dataset = pd.DataFrame(dataset, columns=['temp_C', 'pressure', 'humidity'])
 x_train = x_dataset.loc[0:12425]

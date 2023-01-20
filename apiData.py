@@ -2,6 +2,22 @@ import os
 
 import requests
 import json
+import re
+
+def splitTime():
+    for i in range(len(data['time'])):
+        split_time = re.split(r'[-T:]+', data['time'][i])
+        month.append(split_time[1])
+        day.append(split_time[2])
+        hour.append(split_time[3])
+
+def checkForNull():
+    for i in range(len(data['hour'])):
+        for key in data.keys():
+            if data[key][i] == 'null':
+                for key in data.keys():
+                    data[key].remove(data[key][i])
+                    print('test')
 
 
 query = 'Oslo+Norge' # Fetch from user input website
@@ -42,16 +58,32 @@ if __name__ == "__main__":
             raise SystemExit(e)
         break
 
-
     print(data_request.status_code)
 
-
     file_json = data_request.json()
-    print(file_json.keys())
-    for keys in file_json:
-        print(type(file_json[keys]))
 
-    print(type(file_json['hourly']))
+    # Loading in weather data from json file
+    data = file_json['hourly']
+    print(data.keys())
+
+    # creating lists to split time from json file into
+    month = []
+    day = []
+    hour = []
+
+    # Splitting time
+    splitTime()
+
+    # Adding month day and hour keys into json
+    data['month'] = month
+    data['day'] = day
+    data['hour'] = hour
+
+    # Deleting time
+    del data['time']
+
+    # Checking json for null
+    checkForNull()
 
     with open(json_dir, 'w+') as file:
-        json.dump(file_json, file, indent=4)
+        json.dump(data, file, indent=4)
