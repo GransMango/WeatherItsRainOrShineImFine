@@ -24,7 +24,7 @@ x_dataset = da
 x_train = x_dataset
 x_test = x_dataset.loc[trainsplit:dataset_length]
 
-y_dataset = da.drop("hour", "day", "month")
+y_dataset = da.drop(["hour", "day", "month"])
 y_dataset = da.shift(periods=-1)
 y_train = y_dataset
 y_test = y_dataset.loc[trainsplit:dataset_length]
