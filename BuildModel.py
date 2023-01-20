@@ -19,7 +19,7 @@ loss = 'mse' # loss function
 
 EPOCHS = 5000 # Repetitions of dataset
 patience = 20 # patience of early stop
-validation_split = 0.2 # validation data percentage
+
 
 def build_model():
     model = keras.Sequential([

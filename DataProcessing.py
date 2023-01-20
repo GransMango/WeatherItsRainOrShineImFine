@@ -1,40 +1,7 @@
-import os
-
+import json
+from apiData import json_dir
 import pandas as pd
 from os.path import dirname
-
-def kelv_to_celsius(temp_kelv):
-    temp_celsius = (temp_kelv) - 273.15
-    return temp_celsius
-
-directory = dirname(__file__)
-
-
-
-
-da = pd.read_csv(directory + '\\Data\\bradatebackup.csv')
-# da["temp_C"] = kelv_to_celsius(da["temp"])
-features = ['temp_C', 'pressure', 'humidity', 'rain']
-dataset = pd.DataFrame(da, columns=features)
-
-class Datasets():
-    def __int__(self):
-
-x_dataset = pd.DataFrame(dataset, columns=['temp_C', 'pressure', 'humidity'])
-x_train = x_dataset.loc[0:12425]
-x_test = x_dataset.loc[12426:13030]
-
-
-y_datasetdf = dataset.shift(periods=-1)
-y_dataset = pd.DataFrame(y_datasetdf, columns=['temp_C', 'pressure', 'humidity', 'rain'])
-y_train = y_dataset.loc[0:12425] #Change to total data points
-y_test = y_dataset.loc[12426:13030]
-
-
-train_x_stats = x_train.describe().transpose()
-train_y_stats = y_train.describe().transpose()
-
-
 
 def normx(x):
   return (x - train_x_stats['mean']) / train_x_stats['std']
@@ -42,6 +9,29 @@ def normy(x):
   return (x - train_y_stats['mean']) / train_y_stats['std']
 def denormy(x):
     return (x * train_y_stats['std']) + train_y_stats['mean']
+
+directory = dirname(__file__)
+
+with open(json_dir, "r") as file:
+    data = json.loads(file.read())
+
+da = pd.DataFrame.from_dict(data)
+dataset_length = len(da.index)
+validation_split = 0.2 # validation data percentage
+trainsplit = dataset_length*(1-validation_split)
+
+x_dataset = da
+x_train = x_dataset
+x_test = x_dataset.loc[trainsplit:dataset_length]
+
+y_dataset = da.drop("hour", "day", "month")
+y_dataset = da.shift(periods=-1)
+y_train = y_dataset
+y_test = y_dataset.loc[trainsplit:dataset_length]
+
+
+train_x_stats = x_train.describe().transpose()
+train_y_stats = y_train.describe().transpose()
 
 normed_x_train = normx(x_train)
 normed_x_test = normx(x_test)
