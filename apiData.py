@@ -7,9 +7,9 @@ import re
 def splitTime():
     for i in range(len(data['time'])):
         split_time = re.split(r'[-T:]+', data['time'][i])
-        month.append(split_time[1])
-        day.append(split_time[2])
-        hour.append(split_time[3])
+        month.append(int(split_time[1]))
+        day.append(int(split_time[2]))
+        hour.append(int(split_time[3]))
 
 def checkForNull():
     for i in range(len(data['hour'])):
@@ -64,7 +64,6 @@ if __name__ == "__main__":
 
     # Loading in weather data from json file
     data = file_json['hourly']
-    print(data.keys())
 
     # creating lists to split time from json file into
     month = []

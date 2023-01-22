@@ -24,13 +24,14 @@ trainsplit = dataset_length*(1-validation_split)
 x_dataset = da
 x_train = x_dataset
 x_test = x_dataset.loc[trainsplit:dataset_length]
+#x_train= np.asarray(x_train).astype(np.int)
 
 
 #y_dataset = da.drop(["hour", "day", "month"]).shift(periods=-1)
 y_dataset = da.shift(periods=-1)
 y_train = y_dataset
 y_test = y_dataset.loc[trainsplit:dataset_length]
-
+#y_train= np.asarray(y_train).astype(np.int)
 
 train_x_stats = x_train.describe().transpose()
 train_y_stats = y_train.describe().transpose()
