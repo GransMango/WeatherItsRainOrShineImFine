@@ -25,7 +25,7 @@ for i in range(1):
     h_prediction_r = denormy(unorm_hour_prediction)
     h_prediction_f = pd.DataFrame(h_prediction_r).T
 
-    print(h_prediction_f)
+    print(h_prediction_r)
 
     hour_prediction = h_prediction_f.rename(columns={1: 'pressure',
                                                      2: 'humidity',

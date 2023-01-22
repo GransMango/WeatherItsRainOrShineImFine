@@ -16,7 +16,7 @@ directory = dirname(__file__)
 with open(json_dir, "r") as file:
     data = json.loads(file.read())
 
-da = pd.DataFrame.from_dict(data)
+da = pd.DataFrame.from_dict(data).dropna()
 dataset_length = len(da.index) - 2
 validation_split = 0.2 # validation data percentage
 trainsplit = dataset_length*(1-validation_split)

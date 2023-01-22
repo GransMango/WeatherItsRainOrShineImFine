@@ -5,7 +5,7 @@ import tensorflow as tf
 from tensorflow import keras
 from tqdm.keras import TqdmCallback
 from tensorflow.keras import layers
-from DataProcessing import normed_y_train, normed_x_train, normed_x_test, normed_y_test, directory, validation_split
+from DataProcessing import normed_y_train, normed_x_train, normed_x_test, normed_y_test, directory, validation_split, normed_arduino_data, denormy
 
 print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
 
@@ -28,7 +28,7 @@ def build_model():
       layers.Dense(9)
     ])
 
-    optimizer = tf.keras.optimizers.RMSprop(learning_rate)
+    optimizer = tf.keras.optimizers.Adam(learning_rate)
     model.compile(loss=loss,
                   optimizer=optimizer,
                   metrics=['mae', 'mse']) # Mean Absolute Error & Root Mean Squared Error
