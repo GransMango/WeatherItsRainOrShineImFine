@@ -45,15 +45,12 @@ normed_y_test = normy(y_test)
 with open(directory + '\\Data\\arduino_data.json', "r") as file:
     a_data = json.loads(file.read())
 
+arduino_features = ['temperature_2m', 'relativehumidity_2m', 'pressure_msl', 'precipitation', 'windspeed_10m', 'winddirection_10m', 'month', 'day', 'hour']
 arduino_da = pd.DataFrame.from_dict(a_data)
-arduino_features = ['temp', 'humidity', 'pressure', 'rain', 'windspeed', 'winddeg', 'month', 'day', 'hour']
 arduino_data = pd.DataFrame(arduino_da, columns=arduino_features)
 normed_arduino_data_raw = normx(arduino_da)
 normed_arduino_data = pd.DataFrame(normed_arduino_data_raw, columns=arduino_features)
 
 
-
-print(arduino_data)
-print(normed_arduino_data)
 
 
