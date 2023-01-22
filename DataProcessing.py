@@ -2,6 +2,7 @@ import json
 from apiData import json_dir
 import pandas as pd
 from os.path import dirname
+import numpy as np
 
 def normx(x):
   return (x - train_x_stats['mean']) / train_x_stats['std']
@@ -24,7 +25,8 @@ x_dataset = da
 x_train = x_dataset
 x_test = x_dataset.loc[trainsplit:dataset_length]
 
-y_dataset = da.drop(["hour", "day", "month"])
+
+#y_dataset = da.drop(["hour", "day", "month"]).shift(periods=-1)
 y_dataset = da.shift(periods=-1)
 y_train = y_dataset
 y_test = y_dataset.loc[trainsplit:dataset_length]
@@ -40,6 +42,8 @@ normed_y_train = normy(y_train)
 normed_y_test = normy(y_test)
 
 arduino_da = pd.read_csv(directory + '\\Data\\arduino_data.csv')
-arduino_features = ['temp_C', 'pressure', 'humidity']
+arduino_features = ['temp', 'humidity', 'pressure', 'rain', 'windspeed', 'winddeg', 'month', 'day', 'hour']
 arduino_data = pd.DataFrame(arduino_da, columns=arduino_features)
 normed_arduino_data = normx(arduino_data)
+
+print(arduino_data)
