@@ -45,6 +45,12 @@ normed_y_test = normy(y_test)
 arduino_da = pd.read_csv(directory + '\\Data\\arduino_data.csv')
 arduino_features = ['temp', 'humidity', 'pressure', 'rain', 'windspeed', 'winddeg', 'month', 'day', 'hour']
 arduino_data = pd.DataFrame(arduino_da, columns=arduino_features)
-normed_arduino_data = normx(arduino_data)
+normed_arduino_data_raw = normx(arduino_da)
+normed_arduino_data = pd.DataFrame(normed_arduino_data_raw, columns=arduino_features)
+
+
 
 print(arduino_data)
+print(normed_arduino_data)
+
+
