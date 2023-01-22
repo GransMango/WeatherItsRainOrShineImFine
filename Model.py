@@ -14,11 +14,11 @@ print("ARDUINO DATA")
 print("\n")
 print(arduino_data)
 
-print("WEATHER PREDICTION FROM ARDUINO DATA \n")
-prediction_base = normed_arduino_data
 
+prediction_base = normed_arduino_data
 print(prediction_base)
-exit()
+
+print("WEATHER PREDICTION FROM ARDUINO DATA \n")
 
 for i in range(1):
     unorm_hour_prediction = model.predict(prediction_base).flatten()
@@ -26,8 +26,6 @@ for i in range(1):
     h_prediction_f = pd.DataFrame(h_prediction_r).T
 
     print(h_prediction_f)
-    break
-
 
     hour_prediction = h_prediction_f.rename(columns={1: 'pressure',
                                                      2: 'humidity',
