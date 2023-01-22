@@ -1,2 +1,18 @@
-﻿city_id,temp_max,temp_min,temp,pressure,humidity,windspeed,winddeg,clouds,rain,h_after0,month,day,hour
-3160606,273.25,284.26,273.15,975,100,1,166,80,0,8,9,23,8
+﻿[
+  {
+    "city_id": 3160606,
+    "temp_max": 273.25,
+    "temp_min": 284.26,
+    "temp": 273.15,
+    "pressure": 975,
+    "humidity": 100,
+    "windspeed": 1,
+    "winddeg": 166,
+    "clouds": 80,
+    "rain": 0,
+    "h_after0": 8,
+    "month": 9,
+    "day": 23,
+    "hour": 8
+  }
+]
