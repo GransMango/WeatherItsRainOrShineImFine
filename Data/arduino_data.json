@@ -1,11 +1,11 @@
-﻿{
+{
     "city_id": 3160606,
     "temp_max": 273.25,
     "temp_min": 284.26,
-    "temp": 273.15,
+    "temp" : 273.15,
     "pressure": 975,
     "humidity": 100,
-    "windspeed": 1,
+    "windespped": 1,
     "winddeg": 166,
     "clouds": 80,
     "rain": 0,
