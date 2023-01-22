@@ -40,8 +40,6 @@ normed_y_train = normy(y_train)
 normed_y_test = normy(y_test)
 
 arduino_da = pd.read_csv(directory + '\\Data\\arduino_data.csv')
-arduino_da['temp_C'] = kelv_to_celsius((arduino_da['temp']))
 arduino_features = ['temp_C', 'pressure', 'humidity']
 arduino_data = pd.DataFrame(arduino_da, columns=arduino_features)
-
 normed_arduino_data = normx(arduino_data)
