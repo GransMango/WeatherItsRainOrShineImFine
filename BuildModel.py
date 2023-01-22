@@ -5,7 +5,7 @@ import tensorflow as tf
 from tensorflow import keras
 from tqdm.keras import TqdmCallback
 from tensorflow.keras import layers
-from DataProcessing import x_train, normed_y_train, normed_x_train, normed_x_test, normed_y_test, directory, validation_split
+from DataProcessing import normed_y_train, normed_x_train, normed_x_test, normed_y_test, directory, validation_split
 
 print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
 
@@ -23,7 +23,7 @@ patience = 20 # patience of early stop
 
 def build_model():
     model = keras.Sequential([
-      layers.Dense(9, activation=activation_function, input_shape=[len(x_train.keys())]), # hidden layer 1
+      layers.Dense(9, activation=activation_function, input_shape=[len(normed_x_train.keys())]), # hidden layer 1
       layers.Dense(number_of_nodes, activation=activation_function), # Hidden layer 2
       layers.Dense(9)
     ])
@@ -109,6 +109,9 @@ if (not isExists):
         file.write('EPOCHS: ' + str(EPOCHS) + '\n')
         file.write('Patience: ' + str(patience) + '\n')
         file.write('Validation split: ' + str(validation_split))
+
+
+
 
 
 
