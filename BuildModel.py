@@ -87,6 +87,8 @@ print("Testing set Mean Abs Error: {:5.2f} norm fut weather".format(mae))
 # Saving model file
 model.save(directory + '\\Model\\')
 
+if(not os.path.exists(directory + "\\ModelBenchmark")):
+    os.mkdir(directory + "\\ModelBenchmark")
 
 # Creating path for saving plots
 Matplot_dirname = '_par_' + str(total_parameters) + '_lear_' + str(learning_rate) + '_' + (activation_function)
