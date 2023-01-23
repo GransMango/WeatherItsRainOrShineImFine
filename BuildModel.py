@@ -17,7 +17,7 @@ activation_function = 'sigmoid' # Select activation function
 learning_rate = 0.001 # Change learning rate
 loss = 'mse' # loss function
 
-EPOCHS = 12 # Repetitions of dataset
+EPOCHS = 100# Repetitions of dataset
 patience = 20 # patience of early stop
 
 
