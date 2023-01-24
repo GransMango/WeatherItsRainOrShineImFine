@@ -1,0 +1,15 @@
+body {
+    font-family: Arial, Verdana, sans-serif;
+}
+
+#userInputHeader {
+    text-align: center;
+}
+
+.userInput {
+    text-align: center;
+}
+
+#buttonSubmit {
+    align-items: center;
+}
