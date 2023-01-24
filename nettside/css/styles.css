@@ -24,6 +24,18 @@ body, html {
     padding: 10px;
 }
 
+#about:hover {
+    background-color: #9999ff;
+}
+
+#home {
+    padding: 10px;
+}
+
+#home:hover {
+    background-color: #9999ff;
+}
+
 li a{
     text-decoration: none;
     color: black;
@@ -55,6 +67,17 @@ li a:hover {
     align-items: center;
 }
 
-#about:hover {
-    background-color: #9999ff;
+.imgSun {
+    position: fixed;
+    left: 230px;
+}
+
+.imgCloud {
+    background-size: auto;
+    position: fixed;
+    left: 50px;
+}
+
+#aboutPageHeader {
+    text-align: center;
 }
