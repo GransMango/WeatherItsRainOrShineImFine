@@ -8,13 +8,21 @@
 <body>
 <script src="../js/main.js"></script>
 
-<div class="userInput">
-    <h1 id="userInputHeader">Dette er brukerinput</h1>
+<ul>
+    <div class="sidebar">
+        <li id="about"><a href="aboutPage.html">about</a></li>
+    </div>
+</ul>
+
+<div class="userInputBackground">
     <form>
+        <div class="userInput">
+        <h1 id="userInputHeader">userinput</h1>
         <label for="inputLand">Land: </label><br>
         <input type="text" id="inputLand" name="inputLand"><br>
         <label for="inputBy">By: </label><br>
         <input type="text" id="inputBy" name="inputBy">
+        </div>
     </form>
     <br>
     <button id="buttonSubmit">Submit</button>
