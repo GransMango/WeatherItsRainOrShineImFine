@@ -15,3 +15,5 @@ Flask
 
 Test cases:
 Aktiveringsfunksjon, feil aktiveringsfunksjon
+Check if y_train gets nan
+

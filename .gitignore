@@ -129,3 +129,11 @@ dmypy.json
 .pyre/
 /ModelBenchmark/ABS_0.2096_par_976_lear_0.001_sigmoid/
 /website/
+/ModelBenchmark/ABS_nan_par_976_lear_0.001_sigmoid/
+/Model/assets/
+/Model/variables/
+/Model/fingerprint.pb
+/Model/keras_metadata.pb
+/Model/saved_model.pb
+/Model/variables/
+/Tests/

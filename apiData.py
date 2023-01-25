@@ -4,14 +4,14 @@ import requests
 import json
 import re
 
-def splitTime():
+def splitTime(data, month, day, hour):
     for i in range(len(data['time'])):
         split_time = re.split(r'[-T:]+', data['time'][i])
         month.append(int(split_time[1]))
         day.append(int(split_time[2]))
         hour.append(int(split_time[3]))
 
-def checkForNull():
+def checkForNull(data):
     for i in range(len(data['hour'])):
         for key in data.keys():
             if data[key][i] == 'null':
@@ -19,12 +19,11 @@ def checkForNull():
                     data[key].remove(data[key][i])
                     print('test')
 
+# query = 'Oslo+Norge' # Fetch from user input website
 
-query = 'Oslo+Norge' # Fetch from user input website
-json_dir = os.getcwd() + '\\Data\\' + query + '.json'
-
-if __name__ == "__main__":
+def main(query="Oslo+Norge"):
     # API request, retry 3 times if Timeout
+    json_dir = os.getcwd() + '/Data/' + query + '.json'
     for i in range(3):
         try:
             location_request = requests.get('https://nominatim.openstreetmap.org/?addressdetails=1&q=' + query + '&format=json&limit=1')
@@ -38,7 +37,9 @@ if __name__ == "__main__":
             raise SystemExit(e)
         break
 
-    print(location_request.status_code)
+    if location_request.status_code != 200:
+        print("Status code: ", location_request.status_code)
+
 
     location_json = location_request.json()[0]
     latitude = str(location_json['lat'])
@@ -58,7 +59,8 @@ if __name__ == "__main__":
             raise SystemExit(e)
         break
 
-    print(data_request.status_code)
+    if data_request.status_code != 200:
+        print("Status code: ", data_request.status_code)
 
     file_json = data_request.json()
 
@@ -71,7 +73,7 @@ if __name__ == "__main__":
     hour = []
 
     # Splitting time
-    splitTime()
+    splitTime(data, month, day, hour)
 
     # Adding month day and hour keys into json
     data['month'] = month
@@ -82,7 +84,10 @@ if __name__ == "__main__":
     del data['time']
 
     # Checking json for null
-    checkForNull()
+    checkForNull(data)
 
     with open(json_dir, 'w+') as file:
         json.dump(data, file, indent=4)
+
+# if __name__ == "__main__":
+#     main()
