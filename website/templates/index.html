@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+  <head>
+    <title>Flask app</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
 <body>
-<script src="../js/main.js"></script>
+<script src="../../nettside/js/main.js"></script>
 
 <ul>
     <div class="sidebar">
         <li id="home"><a href="../html/index.html">home</a></li>
-        <li id="about"><a href="../html/aboutPage.html">about</a></li>
+        <a href="{{ url_for('about') }}">About</a>
     </div>
 </ul>
 
