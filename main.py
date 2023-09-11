@@ -1,19 +1,16 @@
 import pandas as pd
-from os.path import dirname
+from pathlib import Path
 from tensorflow import keras
 from DataProcessing import denormy, normed_arduino_data, arduino_data
 
-directory = dirname(__file__)
+directory = Path.cwd()
 
-model = keras.models.load_model(directory + '\\Model\\')
-#print(tf.__version__)
-def kelv_to_celsius(temp_kelv):
+model = keras.models.load_model(directory / 'model')
+def kelv_to_celsius(temp_kelv: float) -> float:
     temp_celsius = (temp_kelv) - 273.15
     return temp_celsius
 
-print("")
-print("ARDUINO DATA")
-print("\n")
+print("\nARDUINO DATA\n")
 print(arduino_data)
 
 print("WEATHER PREDICTION FROM ARDUINO DATA \n")
@@ -37,5 +34,4 @@ for i in range(6):
     print(round(hour_prediction, 2))
 
 
-print('END')
-print('ENJOY YOUR DAY')
+print('END\n ENJOY YOUR DAY')
