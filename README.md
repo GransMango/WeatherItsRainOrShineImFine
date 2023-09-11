@@ -3,7 +3,7 @@
 ## Overview
 
 This project focuses on weather prediction using a neural network model. It includes data processing, model training, and prediction based on Arduino sensor data.
-The project is not to be seen as a reliable tool to plan what you should wear.
+The project is not to be seen as a reliable tool to plan what you should wear today.
 
 ## Installation
 
