@@ -3,19 +3,27 @@ from pathlib import Path
 from tensorflow import keras
 from DataProcessing import denormy, normed_arduino_data, arduino_data
 
+# Set the current working directory
 directory = Path.cwd()
 
-model = keras.models.load_model(directory / 'model')
-def kelv_to_celsius(temp_kelv: float) -> float:
-    temp_celsius = (temp_kelv) - 273.15
-    return temp_celsius
+# Load the pre-trained model for weather prediction
+try:
+    model = keras.models.load_model(directory / 'model')
+except Exception as e:
+    print(f"Error loading model: {e}")
+    exit()
 
+# Function to convert temperature from Kelvin to Celsius
+def kelv_to_celsius(temp_kelv: float) -> float:
+    return temp_kelv - 273.15
+
+# Display the raw Arduino data
 print("\nARDUINO DATA\n")
 print(arduino_data)
 
+# Predict weather using the loaded model
 print("WEATHER PREDICTION FROM ARDUINO DATA \n")
 prediction_base = normed_arduino_data
-
 
 for i in range(6):
     unorm_hour_prediction = model.predict(prediction_base).flatten()
