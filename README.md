@@ -10,7 +10,7 @@ The project is not to be seen as a reliable tool to plan what you should wear to
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/weather-prediction-project.git
+   git clone https://github.com/GransMango/weather-prediction-project.git
    cd weather-prediction-project
    ```
 2. **Install dependencies**
